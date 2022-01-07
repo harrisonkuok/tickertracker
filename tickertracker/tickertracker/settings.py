@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0-_ubd$lvijwp60+(3jjiz3#k8!x=@$fxada8g1f$dds=)4u&d'
+SECRET_KEY = 'django-insecure-bj^vi5&ghcpp^&h1hh%^e+m7dg2%12fm35g20_40hln82@)w_-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tickertrackerapp',
 ]
 
 MIDDLEWARE = [
@@ -76,13 +77,14 @@ WSGI_APPLICATION = 'tickertracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tickertrackerdb', 
-        'USER': 'postgres', 
+        'NAME': 'tickertrackerdb',
+        'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
