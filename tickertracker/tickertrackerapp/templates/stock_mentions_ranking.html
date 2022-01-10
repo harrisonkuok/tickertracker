@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Ticker</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mentions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for stock in stocks %}
+                    <tr>
+                        <td>{{ stock.ticker }}</td>
+                        <td>{{ stock.name }}</td>
+                        <td>{{ stock.mention }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div> <!-- /container -->
+
+</main>
+{% endblock %}
