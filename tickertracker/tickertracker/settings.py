@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
     'tickertrackerapp',
+    'authapp'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,12 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
