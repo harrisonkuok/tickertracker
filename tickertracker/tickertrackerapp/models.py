@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.core.validators import MaxValueValidator
 
 # Create your models here.
@@ -9,7 +10,7 @@ class Stock(models.Model):
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2)
 
     def get_top_mentioned(number):
-        return Stock.objects.order_by('-mention')[:number]
+        return Stock.objects.filter(~Q(mention=0)).order_by('-mention')[:number]
 
     def __str__(self):
         return self.ticker
