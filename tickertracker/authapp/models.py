@@ -7,6 +7,7 @@ class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, password, **other_fields):
 
+        other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
 
@@ -31,6 +32,7 @@ class CustomAccountManager(BaseUserManager):
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
+    is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
