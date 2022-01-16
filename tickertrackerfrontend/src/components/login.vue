@@ -3,11 +3,11 @@
         <h4>
             Receives report of the top meme stocks daily!
         </h4>
-        <h7>
+        <p>
             Sign up and log in to opt in.
-        </h7>
+        </p>
         <b-alert v-if="incorrectAuth" show variant="danger">Incorrect username or password entered.</b-alert>
-        <b-form @submit="login" class="text-left">
+        <b-form @submit.prevent="login" class="text-left">
             <b-form-group
                 id="input-group-1"
                 label="Email address:"
@@ -54,7 +54,7 @@
                     password: this.password
                 })
                 .then(() => {
-                    this.$router.push({ name: 'settings' })
+                    // this.$router.push({ name: 'settings' })
                 })
                 .catch(err => {
                     console.log(err)
