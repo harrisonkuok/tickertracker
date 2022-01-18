@@ -11,10 +11,10 @@ class UserAdminConfig(UserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     list_filter = ('email', 'is_staff')
-    list_display = ('email', 'is_active', 'is_staff')
+    list_display = ('email', 'is_active', 'is_staff', 'opt_in')
     fieldsets = (
         (None, {'fields': ('email',)}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'opt_in')}),
     )
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 20, 'cols': 60})},
@@ -22,7 +22,7 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'is_active', 'is_staff')}
+            'fields': ('email', 'password1', 'password2', 'is_active', 'is_staff', 'opt_in')}
          ),
     )
 

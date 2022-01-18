@@ -32,12 +32,16 @@ class CustomAccountManager(BaseUserManager):
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
+    opt_in = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
+
+    def get_opt_in(user):
+        return NewUser.objects.filter(user=user)
     
 
     def __str__(self):

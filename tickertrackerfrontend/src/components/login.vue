@@ -32,8 +32,9 @@
                     required
                 ></b-form-input>
             </b-form-group>
-            
+
             <b-button type="submit" variant="primary">Login</b-button>
+            <b-button variant="outline-primary">Register</b-button>
         </b-form>
     </div>
 </template>
@@ -54,7 +55,7 @@
                     password: this.password
                 })
                 .then(() => {
-                    // this.$router.push({ name: 'settings' })
+                    this.$router.push({ name: 'Settings' })
                 })
                 .catch(err => {
                     console.log(err)

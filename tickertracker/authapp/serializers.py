@@ -19,3 +19,12 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+class UserSettingsSerializer(serializers.ModelSerializer):
+
+    email = serializers.EmailField(required=True)
+    opt_in = serializers.BooleanField(default=True)
+
+    class Meta:
+        model = NewUser
+        fields = ('email', 'opt_in')

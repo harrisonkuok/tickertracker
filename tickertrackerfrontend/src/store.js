@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         accessToken: null,
         refreshToken: null,
+        APIData: '',
     },
     mutations: {
         updateStorage (state, { access, refresh }) {
@@ -23,6 +24,7 @@ export default new Vuex.Store({
                 })
                 .then(res => {
                     context.commit('updateStorage', { access: res.data.access, refresh: res.data.refresh })
+                    console.log(this.state.accessToken)
                     resolve()
                 })
                 .catch(err => {

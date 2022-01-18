@@ -7,12 +7,8 @@
 
 
   export default {
-    name: 'Home',
     data() {
       return {
-        form: {
-          email: ''
-        },
         show: true,
         items: [],
         fields: ['ticker', 'name', 'mention']
@@ -22,7 +18,6 @@
       getAPI
         .get('api/stocks/top',)
         .then(response => {
-          console.log('Received data')
           this.items = response.data
         })
         .catch(err => {
