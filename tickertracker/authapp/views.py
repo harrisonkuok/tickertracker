@@ -27,4 +27,16 @@ class UserSettings(APIView):
         logged_in_user = request.user
         serializer = UserSettingsSerializer(logged_in_user)
         return Response(serializer.data)
+
+    def post(self, request, format='json'):
+        serializer = UserSettingsSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.data
+            user_to_update = NewUser.objects.get(email=data['email'])
+            user_to_update.opt_in = data['opt_in']
+            user_to_update.save()
+            return Response(data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         

@@ -6,6 +6,10 @@
         <p>
             Change your account settings here.
         </p>
+
+        <b-alert v-if="updated" show variant="success">Account settings updated successfully.</b-alert>
+        <b-alert v-if="not_updated" show variant="danger">Account settings not updated, plese try again.</b-alert>
+
         <b-form @submit.prevent="submit" class="text-left">
 
             <b-form-group id="input-group-1" label="Do you want to receive a daily report of the top stocks on r/wallstreetbets?">
@@ -27,6 +31,8 @@
             return {
                 email: '',
                 opt_in: false,
+                updated: false,
+                not_updated: false,
             }
         },
         computed: mapState(['APIData']),
@@ -42,6 +48,25 @@
             .catch(() => {
                 this.$router.push({ name: 'Home' })
             })
+        },
+        methods: {
+            submit () { 
+                getAPI
+                .post('api/auth/settings/', {
+                    email: this.email,
+                    opt_in: this.opt_in,
+                }, { headers: {
+                    "Authorization": "JWT " + this.$store.state.accessToken } })
+                .then(() => {
+                    this.updated = true
+                    this.not_updated = false
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.updated = false
+                    this.not_updated = true
+                })
+            }
         }
     }
 
